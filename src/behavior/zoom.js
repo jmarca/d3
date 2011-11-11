@@ -208,9 +208,15 @@ function d3_behavior_zoomTo(z, x0, x1) {
     scale: k,
     translate: [x, y],
     transform: function(sx, sy) {
-      if (sx) transform(sx, x_, x);
-      if (sy) transform(sy, y_, y);
-    }
+                   if(o.shiftKey){
+                       if (sy) transform(sy, y_, y);
+                   }else if(o.ctrlKey){
+                       if (sx) transform(sx, x_, x);
+                   }else{
+                       if (sx) transform(sx, x_, x);
+                       if (sy) transform(sy, y_, y);
+                   }
+               }
   };
 
   function transform(scale, a, b) {
